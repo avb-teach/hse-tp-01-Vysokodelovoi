@@ -14,7 +14,7 @@ for root, dirs, files in walk_output:
     s = root.removeprefix(walk_output[0][0])
     cnt_levels = len(s.split('/'))
     print(s, cnt_levels)
-    if max_depth == -1:
+    if max_depth == -1 or max_depth == 1:
         for f in files:
             res_pairs.append([root + '/' + f, out_dir + '/' + f])
     else:
