@@ -22,9 +22,10 @@ for root, dirs, files in walk_output:
             if cnt_levels <= max_depth:
                 res_pairs.append([root + '/' + f, out_dir + s + '/' + f])
             else:
+                pref = '/'.join(s.split('/')[-(max_depth - 1):]) if max_depth > 1 else ''
                 res_pairs.append(
                     [root + '/' + f,
-                     out_dir + '/' + '/'.join(s.split('/')[-(max_depth - 1):]) + '/' + f]
+                     out_dir + '/' + pref + '/' + f]
                 )
 
 names = {}
