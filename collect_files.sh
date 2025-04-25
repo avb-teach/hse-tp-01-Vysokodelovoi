@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 if [[ "$1" == "--max_depth" ]]; then
   MAX_DEPTH="$2"
   INPUT_DIR="$3"
