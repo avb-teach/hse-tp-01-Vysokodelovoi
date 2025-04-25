@@ -18,11 +18,12 @@ for root, dirs, files in walk_output:
         for f in files:
             res_pairs.append([root + '/' + f, out_dir + '/' + f])
     else:
+        max_depth += 1
         for f in files:
             if cnt_levels <= max_depth:
                 res_pairs.append([root + '/' + f, out_dir + s + '/' + f])
             else:
-                pref = '/'.join(s.split('/')[-(max_depth - 1):]) if max_depth > 1 else ''
+                pref = '/'.join(s.split('/')[-(max_depth - 1):])
                 res_pairs.append(
                     [root + '/' + f,
                      out_dir + '/' + pref + '/' + f]
