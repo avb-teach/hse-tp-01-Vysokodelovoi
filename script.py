@@ -18,7 +18,6 @@ for root, dirs, files in walk_output:
         for f in files:
             res_pairs.append([root + '/' + f, out_dir + '/' + f])
     else:
-        max_depth += 1
         for f in files:
             if cnt_levels <= max_depth:
                 res_pairs.append([root + '/' + f, out_dir + s + '/' + f])
@@ -53,4 +52,13 @@ for i, (_, name) in enumerate(res_pairs):
 
 for x, y in res_pairs:
     print(x, y)
-    os.rename(x, y)
+    # os.rename(x, y)
+    try:
+        os.replace(x, y)
+    except:
+        new_dir = '/'.join(y.split('/')[:-1])
+        os.makedirs(new_dir, exist_ok=True)
+        os.rename(x, y)
+
+
+
