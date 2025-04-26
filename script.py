@@ -2,15 +2,16 @@ import os
 
 max_depth, in_dir, out_dir = input().split()
 max_depth = int(max_depth)
-print(max_depth, in_dir, out_dir)
-# in_dir = '/home/daniel/testing_shell_cmds/dir1'
-# max_depth = -1
-#
+# print(max_depth, in_dir, out_dir)
+# in_dir = '/home/daniel/testing_shell_cmds/git_test'
+# max_depth = 2
 # out_dir = '/home/daniel/testing_shell_cmds/dir2'
+
 res_pairs = []
-# print(list(os.walk(in_dir))[1])
 walk_output = list(os.walk(in_dir))
 for root, dirs, files in walk_output:
+    if max_depth == 0:
+        break
     s = root.removeprefix(walk_output[0][0])
     cnt_levels = len(s.split('/'))
     print(s, cnt_levels)
@@ -46,19 +47,12 @@ for i, (_, name) in enumerate(res_pairs):
 
     else:
         names[name] = 1
-# print('#' * 100)
-# print('Answer')
-# print('#' * 100)
 
 for x, y in res_pairs:
     print(x, y)
-    # os.rename(x, y)
     try:
-        os.replace(x, y)
+        os.rename(x, y)
     except:
         new_dir = '/'.join(y.split('/')[:-1])
         os.makedirs(new_dir, exist_ok=True)
         os.rename(x, y)
-
-
-
